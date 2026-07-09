@@ -2,39 +2,46 @@
 <html lang="pt-MZ">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>PROGESSO & SERVIÇOS – Especialistas em Acabamentos</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
+        /* ===== RESET E BASE ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #e8f0f8 0%, #d4e4f0 50%, #c5d8e8 100%);
             color: #1e293b;
-            line-height: 1.6;
-            scroll-behavior: smooth;
+            line-height: 1.5;
             min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 16px;
         }
 
         /* ===== ANIMAÇÕES GLOBAIS ===== */
         .fade-up {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(25px);
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .fade-up.visible {
@@ -44,8 +51,8 @@
 
         .fade-left {
             opacity: 0;
-            transform: translateX(-30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateX(-20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .fade-left.visible {
@@ -55,8 +62,8 @@
 
         .fade-right {
             opacity: 0;
-            transform: translateX(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateX(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .fade-right.visible {
@@ -66,8 +73,8 @@
 
         .zoom-in {
             opacity: 0;
-            transform: scale(0.92);
-            transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: scale(0.95);
+            transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .zoom-in.visible {
@@ -78,11 +85,11 @@
         /* ===== HEADER / NAV ===== */
         .navbar {
             background: #ffffff;
-            padding: 8px 0;
+            padding: 10px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
             transition: box-shadow 0.3s;
         }
 
@@ -90,19 +97,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            gap: 10px;
         }
 
-        /* ===== LOGO COM IMAGEM ===== */
         .logo {
             display: flex;
             align-items: center;
             cursor: pointer;
             text-decoration: none;
+            flex-shrink: 0;
         }
 
         .logo img {
-            height: 42px;
+            height: 36px;
             width: auto;
             display: block;
             transition: transform 0.3s ease;
@@ -112,22 +120,40 @@
             transform: scale(1.05);
         }
 
-        /* ===== NAV LINKS ===== */
+        /* ===== MENU MOBILE ===== */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: #1a5276;
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: color 0.3s;
+            flex-shrink: 0;
+        }
+
+        .nav-toggle:hover {
+            color: #c0392b;
+        }
+
         .nav-links {
             display: flex;
-            gap: 28px;
+            gap: 20px;
             list-style: none;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .nav-links a {
             color: #1e293b;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: color 0.25s, transform 0.25s;
             display: inline-block;
             position: relative;
+            white-space: nowrap;
         }
 
         .nav-links a::after {
@@ -136,7 +162,7 @@
             bottom: -4px;
             left: 0;
             width: 0%;
-            height: 3px;
+            height: 2px;
             background: #c0392b;
             transition: width 0.3s ease;
         }
@@ -151,23 +177,24 @@
         }
 
         .nav-links a i {
-            margin-right: 6px;
+            margin-right: 5px;
             color: #1a5276;
             transition: color 0.25s;
+            font-size: 0.8rem;
         }
 
         .nav-links a:hover i {
             color: #c0392b;
         }
 
-        /* ===== HERO COM BACKGROUND ===== */
+        /* ===== HERO ===== */
         .hero {
             background: linear-gradient(rgba(11, 26, 46, 0.60), rgba(26, 58, 90, 0.70)), url('images/backgound.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: scroll;
             color: white;
-            padding: 100px 0 90px;
+            padding: 60px 0 50px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -198,11 +225,12 @@
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 18px;
+            margin-bottom: 12px;
             animation: fadeSlideUp 0.9s ease forwards;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+            word-break: break-word;
         }
 
         .hero h1 i {
@@ -210,26 +238,27 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 32px;
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto 24px;
             opacity: 0.95;
             animation: fadeSlideUp 0.9s 0.15s ease forwards;
             opacity: 0;
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+            padding: 0 10px;
         }
 
         .hero .btn {
             background: #c0392b;
             color: #ffffff;
-            padding: 14px 44px;
-            border-radius: 60px;
+            padding: 12px 32px;
+            border-radius: 50px;
             font-weight: 700;
             text-decoration: none;
             display: inline-block;
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             border: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
             box-shadow: 0 6px 18px rgba(192, 57, 43, 0.35);
             animation: fadeSlideUp 0.9s 0.3s ease forwards;
@@ -238,14 +267,14 @@
 
         .hero .btn:hover {
             background: #a93226;
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 12px 28px rgba(192, 57, 43, 0.5);
+            transform: scale(1.04) translateY(-2px);
+            box-shadow: 0 10px 24px rgba(192, 57, 43, 0.5);
         }
 
         @keyframes fadeSlideUp {
             0% {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             100% {
                 opacity: 1;
@@ -253,158 +282,172 @@
             }
         }
 
-        /* ===== SEÇÃO MISSÃO / VISÃO / PROPÓSITO ===== */
+        /* ===== SEÇÕES ===== */
+        .mvp,
+        .servicos,
+        .portfolio,
+        .contacto {
+            padding: 40px 0 35px;
+            border-radius: 24px;
+            margin: 16px 10px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+        }
+
         .mvp {
-            padding: 60px 0 50px;
+            background: rgba(255, 255, 255, 0.80);
+            backdrop-filter: blur(8px);
+        }
+
+        .servicos {
             background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            margin: 30px 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+            backdrop-filter: blur(8px);
         }
 
-        .mvp .container {
-            padding: 0 30px;
+        .portfolio {
+            background: rgba(255, 255, 255, 0.80);
+            backdrop-filter: blur(8px);
         }
 
-        .mvp h2 {
+        .contacto {
+            background: rgba(255, 255, 255, 0.80);
+            backdrop-filter: blur(8px);
+            margin-bottom: 16px;
+        }
+
+        .mvp .container,
+        .servicos .container,
+        .portfolio .container,
+        .contacto .container {
+            padding: 0 16px;
+        }
+
+        /* Títulos das seções */
+        .mvp h2,
+        .servicos h2,
+        .portfolio h2,
+        .contacto h2 {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 12px;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
             color: #1a5276;
+            word-break: break-word;
         }
 
-        .mvp h2 i {
+        .mvp h2 i,
+        .servicos h2 i,
+        .portfolio h2 i,
+        .contacto h2 i {
             color: #c0392b;
-            margin-right: 10px;
+            margin-right: 8px;
         }
 
-        .mvp .subhead {
+        .mvp .subhead,
+        .portfolio .subhead,
+        .contacto .sub {
             text-align: center;
-            max-width: 750px;
-            margin: 0 auto 40px;
+            max-width: 100%;
+            margin: 0 auto 28px;
             color: #2c3e50;
+            font-size: 0.95rem;
+            padding: 0 4px;
         }
 
+        /* ===== MISSÃO / VISÃO / PROPÓSITO ===== */
         .mvp-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-            margin-top: 10px;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 6px;
         }
 
         .mvp-card {
-            background: rgba(255, 255, 255, 0.85);
-            padding: 32px 24px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.90);
+            padding: 24px 18px;
+            border-radius: 18px;
             text-align: center;
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border-left: 6px solid #c0392b;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-left: 5px solid #c0392b;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
         }
 
         .mvp-card:hover {
-            transform: translateY(-10px) scale(1.01);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.98);
         }
 
         .mvp-card i {
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             color: #1a5276;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             transition: transform 0.3s;
         }
 
         .mvp-card:hover i {
-            transform: scale(1.1) rotate(-2deg);
+            transform: scale(1.08) rotate(-2deg);
             color: #c0392b;
         }
 
         .mvp-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
+            font-size: 1.2rem;
+            margin-bottom: 6px;
             color: #1a5276;
         }
 
         .mvp-card p {
             color: #2c3e50;
+            font-size: 0.9rem;
         }
 
         /* ===== SERVIÇOS ===== */
-        .servicos {
-            padding: 60px 0 50px;
-            background: rgba(255, 255, 255, 0.70);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            margin: 30px 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-        }
-
-        .servicos .container {
-            padding: 0 30px;
-        }
-
-        .servicos h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 40px;
-            color: #1a5276;
-        }
-
-        .servicos h2 i {
-            color: #c0392b;
-            margin-right: 10px;
-        }
-
         .servicos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
         .servico-item {
-            background: rgba(255, 255, 255, 0.90);
-            padding: 30px 24px;
-            border-radius: 24px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
-            border-top: 6px solid #c0392b;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: rgba(255, 255, 255, 0.92);
+            padding: 24px 18px;
+            border-radius: 20px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+            border-top: 5px solid #c0392b;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .servico-item:hover {
-            transform: translateY(-10px) scale(1.01);
-            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
+            transform: translateY(-6px);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
             background: rgba(255, 255, 255, 0.98);
         }
 
         .servico-item i {
-            font-size: 3rem;
+            font-size: 2.4rem;
             color: #1a5276;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             transition: transform 0.4s, color 0.3s;
         }
 
         .servico-item:hover i {
-            transform: scale(1.08) rotate(-4deg);
+            transform: scale(1.06) rotate(-3deg);
             color: #c0392b;
         }
 
         .servico-item h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
             color: #1a5276;
         }
 
         .servico-item ul {
             list-style: none;
             padding: 0;
-            margin-top: 12px;
-            font-size: 0.95rem;
+            margin-top: 10px;
+            font-size: 0.9rem;
         }
 
         .servico-item ul li {
-            padding: 6px 0;
+            padding: 5px 0;
             border-bottom: 1px dashed #e9edf2;
             transition: padding-left 0.2s;
             color: #2c3e50;
@@ -421,67 +464,36 @@
         }
 
         .servico-item:hover ul li {
-            padding-left: 6px;
+            padding-left: 4px;
         }
 
-        /* ===== PORTFÓLIO / PROJETOS ===== */
-        .portfolio {
-            padding: 60px 0 50px;
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            margin: 30px 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-        }
-
-        .portfolio .container {
-            padding: 0 30px;
-        }
-
-        .portfolio h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 12px;
-            color: #1a5276;
-        }
-
-        .portfolio h2 i {
-            color: #c0392b;
-            margin-right: 10px;
-        }
-
-        .portfolio .subhead {
-            text-align: center;
-            max-width: 750px;
-            margin: 0 auto 40px;
-            color: #2c3e50;
-        }
-
+        /* ===== PORTFÓLIO ===== */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
         .portfolio-item {
-            background: rgba(255, 255, 255, 0.90);
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 18px;
             overflow: hidden;
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.1);
             background: rgba(255, 255, 255, 0.98);
         }
 
         .portfolio-item .image-wrapper {
             width: 100%;
-            height: 240px;
+            height: 200px;
             overflow: hidden;
             position: relative;
+            background: #d4e4f0;
         }
 
         .portfolio-item .image-wrapper img {
@@ -492,126 +504,128 @@
         }
 
         .portfolio-item:hover .image-wrapper img {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
         .portfolio-item .image-wrapper .badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 12px;
+            right: 12px;
             background: #c0392b;
             color: white;
-            padding: 4px 14px;
+            padding: 3px 12px;
             border-radius: 30px;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
         .portfolio-item .info {
-            padding: 24px;
+            padding: 18px 16px 20px;
         }
 
         .portfolio-item .info h3 {
             color: #1a5276;
-            font-size: 1.2rem;
-            margin-bottom: 6px;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
         }
 
         .portfolio-item .info p {
             color: #2c3e50;
-            font-size: 0.95rem;
-            margin-bottom: 12px;
+            font-size: 0.88rem;
+            margin-bottom: 10px;
         }
 
         .portfolio-item .info .tags {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
         .portfolio-item .info .tags span {
             background: #e9edf2;
-            padding: 2px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
+            padding: 2px 10px;
+            border-radius: 16px;
+            font-size: 0.7rem;
             color: #1e293b;
             font-weight: 500;
         }
 
-        /* ===== DIFERENCIAIS + GARANTIA ===== */
+        /* ===== DIFERENCIAIS ===== */
         .diferenciais {
             background: linear-gradient(145deg, #0f172a 0%, #1a2a4a 100%);
             color: white;
-            padding: 60px 0 50px;
-            border-radius: 30px;
-            margin: 30px 20px;
+            padding: 45px 0 40px;
+            border-radius: 24px;
+            margin: 16px 10px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
         }
 
         .diferenciais h2 {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 36px;
+            font-size: 1.6rem;
+            margin-bottom: 28px;
+            padding: 0 16px;
         }
 
         .diferenciais h2 i {
             color: #c0392b;
-            margin-right: 10px;
+            margin-right: 8px;
         }
 
         .diferenciais-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            max-width: 900px;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            max-width: 100%;
+            padding: 0 14px;
             margin: 0 auto;
-            padding: 0 20px;
         }
 
         .diferenciais-grid>div {
-            background: rgba(255, 255, 255, 0.06);
-            padding: 24px 16px;
-            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.07);
+            padding: 18px 12px;
+            border-radius: 16px;
             text-align: center;
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             width: 100%;
             backdrop-filter: blur(5px);
+            font-size: 0.85rem;
         }
 
         .diferenciais-grid>div:hover {
-            transform: translateY(-8px) scale(1.02);
-            background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.14);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
         }
 
         .diferenciais-grid i {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: #c0392b;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             transition: transform 0.3s;
         }
 
         .diferenciais-grid>div:hover i {
-            transform: scale(1.12) rotate(-4deg);
+            transform: scale(1.1) rotate(-3deg);
         }
 
         .diferenciais-grid .garantia {
             background: #c0392b;
             color: #ffffff;
             font-weight: 700;
-            padding: 24px 16px;
-            border-radius: 18px;
-            box-shadow: 0 6px 20px rgba(192, 57, 43, 0.25);
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 18px 12px;
+            border-radius: 16px;
+            box-shadow: 0 6px 18px rgba(192, 57, 43, 0.3);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .diferenciais-grid .garantia:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateY(-4px);
             background: #a93226;
-            box-shadow: 0 16px 40px rgba(192, 57, 43, 0.4);
+            box-shadow: 0 12px 28px rgba(192, 57, 43, 0.4);
         }
 
         .diferenciais-grid .garantia i {
@@ -620,71 +634,74 @@
 
         .diferenciais .resumo {
             text-align: center;
-            margin-top: 36px;
-            font-size: 1.1rem;
+            margin-top: 28px;
+            font-size: 0.95rem;
             opacity: 0.95;
-            padding: 0 20px;
+            padding: 0 16px;
         }
 
         .diferenciais .resumo i {
             color: #c0392b;
-            margin-right: 8px;
+            margin-right: 6px;
         }
 
         /* ===== CONTACTO ===== */
-        .contacto {
-            padding: 60px 0 50px;
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            margin: 30px 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-            text-align: center;
-        }
-
-        .contacto .container {
-            padding: 0 30px;
-        }
-
-        .contacto h2 {
-            font-size: 2rem;
-            margin-bottom: 12px;
-            color: #1a5276;
-        }
-
-        .contacto h2 i {
-            color: #c0392b;
-            margin-right: 10px;
-        }
-
         .contacto .sub {
-            color: #2c3e50;
-            max-width: 600px;
-            margin: 0 auto 32px;
+            margin-bottom: 24px;
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            background: #25d366;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-top: 4px;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+            width: 100%;
+            max-width: 340px;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1da851;
+            transform: scale(1.03) translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+        }
+
+        .btn-whatsapp i {
+            margin-right: 10px;
+            font-size: 1.2rem;
         }
 
         .contacto-info {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 35px;
-            margin-top: 20px;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 24px;
+            align-items: center;
         }
 
         .contacto-info div {
-            font-size: 1rem;
+            font-size: 0.92rem;
             transition: transform 0.25s;
+            text-align: center;
+            width: 100%;
+            max-width: 340px;
         }
 
         .contacto-info div:hover {
-            transform: translateY(-4px);
+            transform: translateY(-2px);
         }
 
         .contacto-info i {
             color: #c0392b;
-            margin-right: 12px;
-            width: 28px;
-            font-size: 1.2rem;
+            margin-right: 10px;
+            width: 24px;
+            font-size: 1.1rem;
             transition: color 0.3s;
         }
 
@@ -697,48 +714,23 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.2s;
+            word-break: break-word;
         }
 
         .contacto-info a:hover {
             color: #c0392b;
         }
 
-        /* Botão WhatsApp */
-        .btn-whatsapp {
-            display: inline-block;
-            background: #25d366;
-            color: white;
-            padding: 14px 36px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.05rem;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            margin-top: 10px;
-            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
-        }
-
-        .btn-whatsapp:hover {
-            background: #1da851;
-            transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
-        }
-
-        .btn-whatsapp i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
         /* ===== FOOTER ===== */
         .footer {
             background: #0f172a;
             color: #94a3b8;
-            padding: 28px 0;
+            padding: 24px 16px;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             border-top: 3px solid #c0392b;
-            border-radius: 0 0 30px 30px;
-            margin: 0 20px 20px 20px;
+            border-radius: 0 0 24px 24px;
+            margin: 0 10px 16px 10px;
         }
 
         .footer span {
@@ -746,99 +738,230 @@
             font-weight: 600;
         }
 
-        /* ===== RESPONSIVO ===== */
-        @media (max-width: 992px) {
-            .diferenciais-grid {
+        /* ===== RESPONSIVO TABLET ===== */
+        @media (min-width: 600px) {
+            .mvp-grid {
                 grid-template-columns: repeat(2, 1fr);
-                max-width: 600px;
             }
+
+            .servicos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .portfolio-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-        }
 
-        @media (max-width: 768px) {
+            .diferenciais-grid {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 800px;
+            }
+
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
-            .hero {
-                padding: 70px 0 60px;
-                background-attachment: scroll;
-            }
-            .navbar .container {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .nav-links {
-                justify-content: center;
-                gap: 14px;
-            }
-            .contacto-info {
-                flex-direction: column;
-                gap: 16px;
-            }
+
             .hero p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
-            .logo img {
-                height: 38px;
+
+            .contacto-info {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
             }
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-            .portfolio-item .image-wrapper {
-                height: 200px;
-            }
-            .mvp, .servicos, .portfolio, .contacto {
-                margin: 20px 10px;
-                border-radius: 20px;
-            }
-            .mvp .container, .servicos .container, .portfolio .container, .contacto .container {
-                padding: 0 15px;
-            }
-            .footer {
-                margin: 0 10px 10px 10px;
-                border-radius: 0 0 20px 20px;
+
+            .contacto-info div {
+                max-width: 300px;
             }
         }
 
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.7rem;
+        /* ===== RESPONSIVO DESKTOP ===== */
+        @media (min-width: 992px) {
+            .mvp-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
-            .nav-links a {
-                font-size: 0.8rem;
+
+            .servicos-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
-            .logo img {
-                height: 32px;
+
+            .portfolio-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
-            .portfolio-item .image-wrapper {
-                height: 180px;
-            }
+
             .diferenciais-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
-                max-width: 100%;
-                padding: 0 10px;
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 900px;
+                gap: 25px;
             }
-            .diferenciais-grid>div {
-                padding: 18px 12px;
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .hero {
+                padding: 90px 0 80px;
+                background-attachment: fixed;
+            }
+
+            .mvp,
+            .servicos,
+            .portfolio,
+            .contacto {
+                padding: 60px 0 50px;
+                margin: 30px 20px;
+                border-radius: 30px;
+            }
+
+            .diferenciais {
+                margin: 30px 20px;
+                border-radius: 30px;
+                padding: 60px 0 50px;
+            }
+
+            .footer {
+                margin: 0 20px 20px 20px;
+                border-radius: 0 0 30px 30px;
+                padding: 28px 0;
+            }
+
+            .btn-whatsapp {
+                width: auto;
+                padding: 14px 36px;
+                font-size: 1.05rem;
+            }
+
+            .contacto-info {
+                flex-direction: row;
+                gap: 35px;
+            }
+
+            .contacto-info div {
+                max-width: none;
+            }
+
+            .nav-toggle {
+                display: none !important;
+            }
+
+            .nav-links {
+                display: flex !important;
+                gap: 28px;
+            }
+        }
+
+        /* ===== MENU HAMBÚRGUER (mobile) ===== */
+        @media (max-width: 991px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+                padding: 14px 0 6px;
+                border-top: 1px solid #e9edf2;
+                margin-top: 10px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                padding: 8px 0;
+                border-bottom: 1px solid #f1f5f9;
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                font-size: 0.95rem;
+                padding: 4px 0;
+                white-space: normal;
+                display: block;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .nav-links a i {
+                margin-right: 8px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ===== AJUSTES EXTRA PEQUENOS ===== */
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
                 font-size: 0.85rem;
             }
+
+            .hero .btn {
+                font-size: 0.85rem;
+                padding: 10px 24px;
+            }
+
+            .mvp h2,
+            .servicos h2,
+            .portfolio h2,
+            .contacto h2 {
+                font-size: 1.3rem;
+            }
+
+            .diferenciais-grid {
+                gap: 10px;
+            }
+
+            .diferenciais-grid>div {
+                padding: 14px 8px;
+                font-size: 0.75rem;
+            }
+
             .diferenciais-grid i {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
+
             .btn-whatsapp {
-                font-size: 0.9rem;
-                padding: 12px 24px;
+                font-size: 0.85rem;
+                padding: 12px 20px;
             }
-            .mvp, .servicos, .portfolio, .contacto {
-                margin: 15px 8px;
-                border-radius: 16px;
+
+            .portfolio-item .image-wrapper {
+                height: 160px;
             }
-            .mvp .container, .servicos .container, .portfolio .container, .contacto .container {
-                padding: 0 12px;
-            }
+        }
+
+        /* ===== PREVENÇÃO DE ZOOM EM INPUTS ===== */
+        input,
+        select,
+        textarea,
+        button {
+            font-size: 16px !important;
+        }
+
+        /* ===== MELHORIA DE TOQUE ===== */
+        a,
+        button,
+        .btn,
+        .logo {
+            touch-action: manipulation;
         }
     </style>
 </head>
@@ -850,7 +973,10 @@
             <a href="#topo" class="logo">
                 <img src="images/processimg.png" alt="PROGESSO & SERVIÇOS" />
             </a>
-            <ul class="nav-links">
+            <button class="nav-toggle" id="navToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#sobre"><i class="fas fa-building"></i> Sobre</a></li>
                 <li><a href="#servicos"><i class="fas fa-tools"></i> Serviços</a></li>
                 <li><a href="#portfolio"><i class="fas fa-images"></i> Projetos</a></li>
@@ -860,7 +986,7 @@
         </div>
     </nav>
 
-    <!-- HERO COM BACKGROUND -->
+    <!-- HERO -->
     <section id="topo" class="hero">
         <div class="container">
             <h1><i class="fas fa-hard-hat"></i> PROGESSO & SERVIÇOS</h1>
@@ -869,7 +995,7 @@
         </div>
     </section>
 
-    <!-- SOBRE + MISSÃO/VISÃO/PROPÓSITO -->
+    <!-- SOBRE -->
     <section id="sobre" class="mvp">
         <div class="container">
             <h2 class="fade-up"><i class="fas fa-bullseye"></i> Quem Somos</h2>
@@ -886,7 +1012,7 @@
                 <div class="mvp-card zoom-in" style="transition-delay: 0.2s;">
                     <i class="fas fa-eye"></i>
                     <h3>Visão</h3>
-                    <p>Referência em Moçambique em acabamentos e proteção de imóveis, com zero infiltrações e tetos perfeitos.</p>
+                    <p>Referência em Moçambique em acabamentos e proteção de imóveis.</p>
                 </div>
                 <div class="mvp-card fade-right" style="transition-delay: 0.3s;">
                     <i class="fas fa-heart"></i>
@@ -908,7 +1034,7 @@
                     <ul>
                         <li>Tetos lisos, rebaixos, sancas iluminadas e sanefas</li>
                         <li>Estrutura suspensa galvanizada F47</li>
-                        <li>Placas de gesso 9mm ou 12mm (à escolha)</li>
+                        <li>Placas de gesso 9mm ou 12mm</li>
                     </ul>
                 </div>
                 <div class="servico-item zoom-in" style="transition-delay: 0.15s;">
@@ -933,7 +1059,7 @@
         </div>
     </section>
 
-    <!-- PORTFÓLIO / PROJETOS (6 CARDS COM IMAGENS) -->
+    <!-- PORTFÓLIO -->
     <section id="portfolio" class="portfolio">
         <div class="container">
             <h2 class="fade-up"><i class="fas fa-images"></i> Nossos Projetos</h2>
@@ -941,7 +1067,6 @@
                 Conheça alguns dos nossos trabalhos realizados com excelência e qualidade.
             </p>
             <div class="portfolio-grid">
-                <!-- Card 1: Impermeabilização de Laje -->
                 <div class="portfolio-item zoom-in" style="transition-delay: 0.05s;">
                     <div class="image-wrapper">
                         <img src="images/impermeabilizacao-laje-1.jpg" alt="Impermeabilização de Laje" />
@@ -949,33 +1074,29 @@
                     </div>
                     <div class="info">
                         <h3>Impermeabilização de Laje</h3>
-                        <p>Proteção total contra infiltrações e umidade em lajes de cobertura, garantindo durabilidade e segurança.</p>
+                        <p>Proteção total contra infiltrações e umidade em lajes de cobertura.</p>
                         <div class="tags">
                             <span>Impermeabilização</span>
                             <span>Lajes</span>
-                            <span>Proteção</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 2: Impermeabilização de Laje 2 -->
                 <div class="portfolio-item zoom-in" style="transition-delay: 0.10s;">
                     <div class="image-wrapper">
-                        <img src="images/impermeabilizacao-laje-2.jpg" alt="Impermeabilização de Laje" />
+                        <img src="images/impermeabilizacao-laje-2.jpg" alt="Impermeabilização de Cobertura" />
                         <span class="badge">2025</span>
                     </div>
                     <div class="info">
                         <h3>Impermeabilização de Cobertura</h3>
-                        <p>Sistema avançado de impermeabilização para lajes e coberturas, eliminando microfissuras e infiltrações.</p>
+                        <p>Sistema avançado para lajes e coberturas, eliminando microfissuras.</p>
                         <div class="tags">
                             <span>Impermeabilização</span>
                             <span>Cobertura</span>
-                            <span>Infiltração</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 3: Teto Falso -->
                 <div class="portfolio-item zoom-in" style="transition-delay: 0.15s;">
                     <div class="image-wrapper">
                         <img src="images/teto-falso-1.jpg" alt="Teto Falso" />
@@ -983,33 +1104,29 @@
                     </div>
                     <div class="info">
                         <h3>Teto Falso em Gesso</h3>
-                        <p>Teto falso com design moderno, iluminação embutida e acabamento perfeito para ambientes residenciais e comerciais.</p>
+                        <p>Design moderno com iluminação embutida e acabamento perfeito.</p>
                         <div class="tags">
                             <span>Teto Falso</span>
                             <span>Gesso</span>
-                            <span>Design</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 4: Teto Falso 2 -->
                 <div class="portfolio-item zoom-in" style="transition-delay: 0.20s;">
                     <div class="image-wrapper">
                         <img src="images/teto-falso-2.jpg" alt="Teto Falso com Sancas" />
                         <span class="badge">2024</span>
                     </div>
                     <div class="info">
-                        <h3>Teto Falso com Sancas Iluminadas</h3>
-                        <p>Instalação de teto falso com sancas e iluminação LED, criando ambientes sofisticados e aconchegantes.</p>
+                        <h3>Teto Falso com Sancas</h3>
+                        <p>Sancas e iluminação LED para ambientes sofisticados.</p>
                         <div class="tags">
                             <span>Teto Falso</span>
                             <span>Sancas</span>
-                            <span>Iluminação</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 5: Balcão Open Space -->
                 <div class="portfolio-item zoom-in" style="transition-delay: 0.25s;">
                     <div class="image-wrapper">
                         <img src="images/balcao.jpg" alt="Balcão Open Space" />
@@ -1017,16 +1134,14 @@
                     </div>
                     <div class="info">
                         <h3>Balcão em Open Space</h3>
-                        <p>Balcão moderno para cozinhas integradas, com acabamento premium e design contemporâneo para espaços abertos.</p>
+                        <p>Balcão moderno para cozinhas integradas com acabamento premium.</p>
                         <div class="tags">
                             <span>Balcão</span>
                             <span>Open Space</span>
-                            <span>Cozinha</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 6: Acabamentos e Montagens -->
                 <div class="portfolio-item zoom-in" style="transition-delay: 0.30s;">
                     <div class="image-wrapper">
                         <img src="images/backgound.jpg" alt="Acabamentos em Geral" />
@@ -1034,11 +1149,10 @@
                     </div>
                     <div class="info">
                         <h3>Acabamentos e Montagens</h3>
-                        <p>Especialistas em montagem de racks de TV, cortinas e acabamentos diversos para valorizar seu imóvel.</p>
+                        <p>Racks de TV, cortinas e acabamentos diversos para valorizar seu imóvel.</p>
                         <div class="tags">
                             <span>Racks</span>
                             <span>Cortinas</span>
-                            <span>Acabamentos</span>
                         </div>
                     </div>
                 </div>
@@ -1046,20 +1160,20 @@
         </div>
     </section>
 
-    <!-- DIFERENCIAIS + GARANTIA -->
+    <!-- DIFERENCIAIS -->
     <section id="diferenciais" class="diferenciais">
         <div class="container">
             <h2 class="fade-up"><i class="fas fa-medal"></i> Porque escolher a PROGESSO?</h2>
             <div class="diferenciais-grid">
-                <div class="fade-left" style="transition-delay: 0.05s;"><i class="fas fa-user-graduate"></i><br />Equipe treinada e certificada</div>
-                <div class="zoom-in" style="transition-delay: 0.1s;"><i class="fas fa-check-circle"></i><br />Projetos aprovados pelo cliente</div>
+                <div class="fade-left" style="transition-delay: 0.05s;"><i class="fas fa-user-graduate"></i><br />Equipe treinada</div>
+                <div class="zoom-in" style="transition-delay: 0.1s;"><i class="fas fa-check-circle"></i><br />Projetos aprovados</div>
                 <div class="fade-right" style="transition-delay: 0.15s;"><i class="fas fa-tags"></i><br />Preços competitivos</div>
-                <div class="fade-left" style="transition-delay: 0.2s;"><i class="fas fa-clock"></i><br />Cumprimento rigoroso de prazos</div>
-                <div class="zoom-in" style="transition-delay: 0.25s;"><i class="fas fa-award"></i><br />Materiais de reconhecida qualidade</div>
-                <div class="garantia fade-right" style="transition-delay: 0.3s;"><i class="fas fa-shield-alt"></i><br /><strong>Garantia de 12 a 24 meses</strong></div>
+                <div class="fade-left" style="transition-delay: 0.2s;"><i class="fas fa-clock"></i><br />Cumprimento de prazos</div>
+                <div class="zoom-in" style="transition-delay: 0.25s;"><i class="fas fa-award"></i><br />Materiais de qualidade</div>
+                <div class="garantia fade-right" style="transition-delay: 0.3s;"><i class="fas fa-shield-alt"></i><br /><strong>Garantia 12 a 24 meses</strong></div>
             </div>
             <p class="resumo fade-up" style="transition-delay: 0.35s;">
-                <i class="fas fa-check"></i> Resolvemos: transformação de tetos, barramento, infiltrações, umidade e microfissuras.
+                <i class="fas fa-check"></i> Resolvemos: tetos, barramento, infiltrações, umidade e microfissuras.
             </p>
         </div>
     </section>
@@ -1069,24 +1183,23 @@
         <div class="container">
             <h2 class="fade-up"><i class="fas fa-address-card"></i> Fale Connosco</h2>
             <p class="sub fade-up" style="transition-delay: 0.05s;">Estamos prontos para transformar o seu imóvel. Solicite um orçamento sem compromisso.</p>
-            
-            <!-- Botão WhatsApp com mensagem predefinida -->
-            <a href="https://wa.me/258840357373?text=Ol%C3%A1!%20Saiba%20mais%20sobre%20os%20servi%C3%A7os%3A%20PROGESSO%20%26%20SERVI%C3%87OS.%0A%0A%E2%9A%A1%20*Teto%20Falso*%20-%20Tetos%20lisos%2C%20rebaixos%2C%20sancas%20iluminadas%20e%20sanefas%0A%E2%9A%A1%20*Barramento*%20-%20Paredes%20internas%2C%20externas%2C%20divis%C3%B3rias%20e%20tetos%20falsos%0A%E2%9A%A1%20*Impermeabiliza%C3%A7%C3%A3o*%20-%20Lajes%2C%20chapas%20de%20zinco%2C%20funda%C3%A7%C3%B5es%20e%20paredes%0A%0APoderia%20me%20dar%20mais%20informa%C3%A7%C3%B5es%20sobre%20como%20podemos%20trabalhar%20juntos%3F" 
-               class="btn-whatsapp" 
+
+            <a href="https://wa.me/258840357373?text=Ol%C3%A1!%20Saiba%20mais%20sobre%20os%20servi%C3%A7os%3A%20PROGESSO%20%26%20SERVI%C3%87OS.%0A%0A%E2%9A%A1%20*Teto%20Falso*%20-%20Tetos%20lisos%2C%20rebaixos%2C%20sancas%20iluminadas%20e%20sanefas%0A%E2%9A%A1%20*Barramento*%20-%20Paredes%20internas%2C%20externas%2C%20divis%C3%B3rias%20e%20tetos%20falsos%0A%E2%9A%A1%20*Impermeabiliza%C3%A7%C3%A3o*%20-%20Lajes%2C%20chapas%20de%20zinco%2C%20funda%C3%A7%C3%B5es%20e%20paredes%0A%0APoderia%20me%20dar%20mais%20informa%C3%A7%C3%B5es%20sobre%20como%20podemos%20trabalhar%20juntos%3F"
+               class="btn-whatsapp"
                target="_blank">
                 <i class="fab fa-whatsapp"></i> Fale connosco no WhatsApp
             </a>
 
-            <div class="contacto-info" style="margin-top: 35px;">
+            <div class="contacto-info" style="margin-top: 24px;">
                 <div class="zoom-in" style="transition-delay: 0.1s;">
-                    <i class="fas fa-phone-alt"></i> 
+                    <i class="fas fa-phone-alt"></i>
                     <a href="tel:+258840357373">+258 84 035 7373</a>
                 </div>
                 <div class="zoom-in" style="transition-delay: 0.15s;">
-                    <i class="fas fa-map-marker-alt"></i> 
-                    <a href="https://www.google.com/maps/search/?api=1&query=Bairro+Costa+de+Sol,+Loja+n.%C2%BA+2,+Parcela+660B/B2,+Maputo" 
+                    <i class="fas fa-map-marker-alt"></i>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Bairro+Costa+de+Sol,+Loja+n.%C2%BA+2,+Parcela+660B/B2,+Maputo"
                        target="_blank">
-                        Bairro Costa de Sol, Loja n.º 2, Parcela 660B/B2, Maputo
+                        Bairro Costa de Sol, Loja n.º 2, Maputo
                     </a>
                 </div>
                 <div class="zoom-in" style="transition-delay: 0.2s;">
@@ -1103,18 +1216,18 @@
         </div>
     </footer>
 
-    <!-- ===== SCRIPT - ANIMAÇÕES NOS DOIS SENTIDOS ===== -->
+    <!-- ===== SCRIPTS ===== -->
     <script>
+        // ===== ANIMAÇÕES DE SCROLL =====
         (function() {
             const animados = document.querySelectorAll('.fade-up, .fade-left, .fade-right, .zoom-in');
 
             function isVisible(el) {
                 const rect = el.getBoundingClientRect();
                 const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-                const threshold = 0.15;
+                const threshold = 0.12;
                 const topThreshold = windowHeight * threshold;
                 const bottomThreshold = windowHeight * (1 - threshold);
-                
                 return rect.top < bottomThreshold && rect.bottom > topThreshold;
             }
 
@@ -1128,11 +1241,54 @@
                 });
             }
 
-            window.addEventListener('scroll', checkVisibility);
-            window.addEventListener('resize', checkVisibility);
+            window.addEventListener('scroll', checkVisibility, { passive: true });
+            window.addEventListener('resize', checkVisibility, { passive: true });
             window.addEventListener('load', checkVisibility);
             checkVisibility();
         })();
+
+        // ===== MENU HAMBÚRGUER =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.getElementById('navToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            if (toggle && navLinks) {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navLinks.classList.toggle('active');
+                    // Trocar ícone
+                    const icon = toggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-bars');
+                        icon.classList.toggle('fa-times');
+                    }
+                });
+
+                // Fechar menu ao clicar em um link
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                        const icon = toggle.querySelector('i');
+                        if (icon) {
+                            icon.classList.add('fa-bars');
+                            icon.classList.remove('fa-times');
+                        }
+                    });
+                });
+
+                // Fechar ao clicar fora
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.navbar')) {
+                        navLinks.classList.remove('active');
+                        const icon = toggle.querySelector('i');
+                        if (icon) {
+                            icon.classList.add('fa-bars');
+                            icon.classList.remove('fa-times');
+                        }
+                    }
+                });
+            }
+        });
     </script>
 
 </body>
