@@ -129,12 +129,17 @@
             color: #1a5276;
             cursor: pointer;
             padding: 4px 8px;
-            transition: color 0.3s;
+            transition: color 0.3s, transform 0.3s;
             flex-shrink: 0;
+            line-height: 1;
         }
 
         .nav-toggle:hover {
             color: #c0392b;
+        }
+
+        .nav-toggle.active {
+            transform: rotate(90deg);
         }
 
         .nav-links {
@@ -185,6 +190,85 @@
 
         .nav-links a:hover i {
             color: #c0392b;
+        }
+
+        /* ===== RESPONSIVO MENU HAMBÚRGUER ===== */
+        @media (max-width: 991px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+                padding: 16px 0 8px;
+                border-top: 1px solid #e9edf2;
+                margin-top: 12px;
+                background: #ffffff;
+                border-radius: 0 0 12px 12px;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            }
+
+            .nav-links.active {
+                display: flex;
+                animation: slideDown 0.3s ease forwards;
+            }
+
+            @keyframes slideDown {
+                0% {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                padding: 0;
+                border-bottom: 1px solid #f1f5f9;
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+                padding: 12px 0;
+                white-space: normal;
+                display: block;
+                width: 100%;
+                font-weight: 500;
+                transition: background 0.2s, color 0.2s;
+                border-radius: 8px;
+            }
+
+            .nav-links a:hover {
+                background: #f1f5f9;
+                color: #c0392b;
+                transform: none;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .nav-links a i {
+                margin-right: 10px;
+                font-size: 0.95rem;
+                width: 20px;
+                text-align: center;
+            }
+
+            .nav-links a:hover i {
+                color: #c0392b;
+            }
         }
 
         /* ===== HERO ===== */
@@ -855,54 +939,6 @@
             }
         }
 
-        /* ===== MENU HAMBÚRGUER (mobile) ===== */
-        @media (max-width: 991px) {
-            .nav-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                gap: 0;
-                padding: 14px 0 6px;
-                border-top: 1px solid #e9edf2;
-                margin-top: 10px;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                width: 100%;
-                text-align: center;
-                padding: 8px 0;
-                border-bottom: 1px solid #f1f5f9;
-            }
-
-            .nav-links li:last-child {
-                border-bottom: none;
-            }
-
-            .nav-links a {
-                font-size: 0.95rem;
-                padding: 4px 0;
-                white-space: normal;
-                display: block;
-            }
-
-            .nav-links a::after {
-                display: none;
-            }
-
-            .nav-links a i {
-                margin-right: 8px;
-                font-size: 0.9rem;
-            }
-        }
-
         /* ===== AJUSTES EXTRA PEQUENOS ===== */
         @media (max-width: 400px) {
             .hero h1 {
@@ -1247,7 +1283,7 @@
             checkVisibility();
         })();
 
-        // ===== MENU HAMBÚRGUER =====
+        // ===== MENU HAMBÚRGUER OTIMIZADO =====
         document.addEventListener('DOMContentLoaded', function() {
             const toggle = document.getElementById('navToggle');
             const navLinks = document.getElementById('navLinks');
@@ -1255,12 +1291,11 @@
             if (toggle && navLinks) {
                 toggle.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    navLinks.classList.toggle('active');
-                    // Trocar ícone
+                    const isActive = navLinks.classList.toggle('active');
+                    toggle.classList.toggle('active', isActive);
                     const icon = toggle.querySelector('i');
                     if (icon) {
-                        icon.classList.toggle('fa-bars');
-                        icon.classList.toggle('fa-times');
+                        icon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
                     }
                 });
 
@@ -1268,22 +1303,34 @@
                 navLinks.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', function() {
                         navLinks.classList.remove('active');
+                        toggle.classList.remove('active');
                         const icon = toggle.querySelector('i');
                         if (icon) {
-                            icon.classList.add('fa-bars');
-                            icon.classList.remove('fa-times');
+                            icon.className = 'fas fa-bars';
                         }
                     });
                 });
 
-                // Fechar ao clicar fora
+                // Fechar ao clicar fora do menu
                 document.addEventListener('click', function(e) {
                     if (!e.target.closest('.navbar')) {
                         navLinks.classList.remove('active');
+                        toggle.classList.remove('active');
                         const icon = toggle.querySelector('i');
                         if (icon) {
-                            icon.classList.add('fa-bars');
-                            icon.classList.remove('fa-times');
+                            icon.className = 'fas fa-bars';
+                        }
+                    }
+                });
+
+                // Fechar ao pressionar ESC
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        toggle.classList.remove('active');
+                        const icon = toggle.querySelector('i');
+                        if (icon) {
+                            icon.className = 'fas fa-bars';
                         }
                     }
                 });
